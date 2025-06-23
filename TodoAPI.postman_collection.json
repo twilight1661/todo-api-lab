@@ -1,0 +1,68 @@
+{
+  "info": {
+    "name": "TodoAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /todos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/todos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["todos"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /todos",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ "title": "Test Todo" }"
+        },
+        "url": {
+          "raw": "http://localhost:3000/todos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["todos"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test("Status code is 201", () => {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test("Response includes title", () => {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property("title");",
+              "});",
+              "pm.test("Todo has ID", () => {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.id).to.be.a('number');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "response": []
+    }
+  ]
+}
