@@ -18,8 +18,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Jest globally
+        run: npm install -g jest
+
       - name: Run Jest tests
-        run: npx --yes jest --coverage
-        
+        run: jest --coverage
+
       - name: Run Postman tests
         run: npx newman run TodoAPI.postman_collection.json
