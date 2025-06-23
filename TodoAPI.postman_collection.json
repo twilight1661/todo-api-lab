@@ -31,7 +31,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{ "title": "Test Todo" }"
+          "raw": "{ \"title\": \"Test Todo\" }"
         },
         "url": {
           "raw": "http://localhost:3000/todos",
@@ -46,14 +46,14 @@
           "listen": "test",
           "script": {
             "exec": [
-              "pm.test("Status code is 201", () => {",
+              "pm.test(\"Status code is 201\", function () {",
               "    pm.response.to.have.status(201);",
               "});",
-              "pm.test("Response includes title", () => {",
+              "pm.test(\"Response includes title\", function () {",
               "    const jsonData = pm.response.json();",
-              "    pm.expect(jsonData).to.have.property("title");",
+              "    pm.expect(jsonData).to.have.property(\"title\");",
               "});",
-              "pm.test("Todo has ID", () => {",
+              "pm.test(\"Todo has ID\", function () {",
               "    const jsonData = pm.response.json();",
               "    pm.expect(jsonData.id).to.be.a('number');",
               "});"
